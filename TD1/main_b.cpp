@@ -3,7 +3,7 @@
 #include <iostream>
 #include <math.h>
 #include "timespec.h"
-
+#include <stdlib.h>
  
 int main() 
 { 

@@ -20,7 +20,7 @@ timespec timespec_from_ms(double time_ms)
 timespec timespec_now()
 {
 	timespec time_now;
-	clock_gettime(CLOCK_REALTIME, &now);
+	clock_gettime(CLOCK_REALTIME, &time_now);
 	return time_now;
 }
 
@@ -56,16 +56,6 @@ timespec timespec_subtract(const timespec& time1_ts, const timespec& time2_ts)
     	time_sub.tv_sec -= 1;
     }                                                      
     return time_sub;
-}
-
-timespec timespec_wait(const timespec& delay_ts)
-{	
-	timespec time_start, time_stop, time_duration;
-	clock_gettime(CLOCK_REALTIME, time_start);
-	nanosleep(1000);
-	clock_gettime(CLOCK_REALTIME, &fin);
-
-	clock_gettime(CLOCK_REALTIME, &fin);
 }
 
 timespec timespec_wait(const timespec& delay_ts)
