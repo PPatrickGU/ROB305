@@ -17,7 +17,7 @@ int main(int argc, char* argv[])
 {
     unsigned int nLoops = strtoul(argv[1], NULL, 10);
     double counter = 0.0;
-    timespec time_begin, time_end;
+   	timespec time_begin, time_end;
 
     time_begin = timespec_now();
     incr(nLoops, &counter);          
