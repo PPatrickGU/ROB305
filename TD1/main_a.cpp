@@ -11,13 +11,13 @@ int main()
 
 	// Test timespec_now();
 	std::cout << "\n" << "Test timespec_now():" <<std::endl;
-	timespec time_now;
+	struct timespec time_now;
 	time_now = timespec_now();
 	std::cout << "Secondes:" << time_now .tv_sec << ", Nanosec: " << time_now.tv_nsec << std::endl;
 
 	// Test timespec_negate();
 	std::cout << "\n" << "Test timespec_negate():" <<std::endl;
-	timespec time_neg;
+	struct timespec time_neg;
 	time_neg = timespec_negate(time_now);
 	std::cout << "Secondes:" << time_neg .tv_sec << ", Nanosec: " << time_neg.tv_nsec << std::endl;
 
@@ -29,29 +29,29 @@ int main()
 
 	// Test timespec_from_ms
 	std::cout << "\n" << "Test timespec_from_ms:" <<std::endl;
-	timespec time_from_ms;
+	struct timespec time_from_ms;
 	time_from_ms = timespec_from_ms(time_to_ms);
 	std::cout << "Secondes:" << time_from_ms.tv_sec << ", Nanosec: " << time_from_ms.tv_nsec << std::endl;
 
 	// Test timespec_add
 	std::cout << "\n" << "Test timespec_add:" <<std::endl;
-	timespec time_add;
+	struct timespec time_add;
 	time_add = timespec_add(time_now, time_neg);
 	std::cout << "Secondes:" << time_add.tv_sec << ", Nanosec: " << time_add.tv_nsec << std::endl;
 
 	// Test timespec_sub
 	std::cout << "\n" << "Test timespec_sub:" <<std::endl;
-	timespec time_sub;
+	struct timespec time_sub;
 	time_sub = timespec_subtract(time_now, time_now);
 	std::cout << "Secondes:" << time_sub.tv_sec << ", Nanosec: " << time_sub.tv_nsec << std::endl;
 
 	// Test timespec_wait
 	std::cout << "\n" << "Test timespec_wait:" <<std::endl;
-	timespec delay_ts, time_rem;
+	struct timespec delay_ts, time_rem;
     delay_ts.tv_nsec = 500000000;    // 1500ms
     delay_ts.tv_sec = 1;
 
-   	timespec start, end;
+   	struct timespec start, end;
 	clock_gettime(CLOCK_REALTIME, &start);
 	std::cout << "Start time: " << "Secondes:" << start.tv_sec << ", Nanosec: " << start.tv_nsec << std::endl;
 	time_rem = timespec_wait(delay_ts);
@@ -60,7 +60,7 @@ int main()
 
 	
 	//Test operators
-	timespec time1, time2;
+	struct timespec time1, time2;
     time1.tv_nsec = 500000000;    
     time1.tv_sec = 10;
 
@@ -73,7 +73,7 @@ int main()
     
     //test operator-
     std::cout << "\n" << "Test operator-:" <<std::endl;
-    timespec time1_neg;
+    struct timespec time1_neg;
     time1_neg = -time1;
 	std::cout << "-time1: "<< "Secondes:" << time1_neg.tv_sec << ", Nanosec: " << time1_neg.tv_nsec << std::endl;  
     

@@ -82,11 +82,10 @@ std::array<double,2> calib()
 	std::array<double,2> parameters;
 	double I4 = (double)mesure(4, 0);
 	double I6 = (double)mesure(6, 0);
-	parameters[0] = (double)((I6 - I4)/(6.0 - 4.0)); 
-	parameters[1] = (double)(I4 - parameters[0] * 4.0);
+	parameters[0] = (I6 - I4)/(6.0 - 4.0); 
+	parameters[1] = I4 - parameters[0] * 4.0;
 	return parameters;
 }
-
 
 int main(int argc, char* argv[])
 {

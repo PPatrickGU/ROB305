@@ -8,7 +8,7 @@
 
 int value = 0;
  
-void signal_handle(int, siginfo_t* si, void*)
+void myHandler(int, siginfo_t* si, void*)
 {
     std::cout << "Counter: " <<  *((int*)si->si_value.sival_ptr)<<  std::endl;
     *((int*)si->si_value.sival_ptr) += 1;
@@ -18,45 +18,40 @@ void signal_handle(int, siginfo_t* si, void*)
 int main()
 {
     // define the sigaction 
-    struct sigaction sa, sa_old;
-    memset(&sa, 0, sizeof(struct sigaction));
-    memset(&sa_old, 0, sizeof(struct sigaction));
-
+    struct sigaction sa;
     sa.sa_flags = SA_SIGINFO;  // in order to use the sa_sigaction as the call_back function
-    sa.sa_sigaction = signal_handle;
+    sa.sa_sigaction = myHandler;
     sigemptyset(&sa.sa_mask);
-    sigaction(SIGIO, &sa, &sa_old);
+    sigaction(SIGRTMIN, &sa, NULL);
 
 	// define the sigevent
-    struct sigevent evp;  
-	memset(&evp, 0, sizeof(struct sigevent));
-    
-    int value = 0; 
-    evp.sigev_notify = SIGEV_SIGNAL;  
-    evp.sigev_signo = SIGIO;  
-    evp.sigev_value.sival_ptr = (void*)&value; 
+    struct sigevent sev;  
+    sev.sigev_notify = SIGEV_SIGNAL;  
+    sev.sigev_signo = SIGRTMIN;
+    int value = 0;   
+    sev.sigev_value.sival_ptr = (void*)&value; 
 
-    struct itimerspec ts;  
-    timer_t timer;  
+    struct itimerspec its;  
+    timer_t tid;  
     int ret;  	
-	ret = timer_create(CLOCK_REALTIME, &evp, &timer);
+	ret = timer_create(CLOCK_REALTIME, &sev, &tid);
 	if (ret)
 		perror("timer_create");
 
-	ts.it_interval.tv_sec = 0;  // the time interval
-	ts.it_interval.tv_nsec = 5e8;
-	ts.it_value.tv_sec = 1; // the delay time start
-	ts.it_value.tv_nsec = 0;
+	its.it_interval.tv_sec = 0;  // the time interval
+	its.it_interval.tv_nsec = 5e8;
+	its.it_value.tv_sec = 1; // the delay time start
+	its.it_value.tv_nsec = 0;
 
 
-	ret = timer_settime(timer, 0, &ts, NULL);
+	ret = timer_settime(tid, 0, &its, NULL);
 	if (ret)
 		perror("timer_settime");
 
 	while(value < 15)
 		continue;
 
-	timer_delete(timer);
+	timer_delete(tid);
 	return 0;
 }
 
