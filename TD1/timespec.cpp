@@ -11,7 +11,7 @@ double timespec_to_ms(const timespec& time_ts)
 
 timespec timespec_from_ms(double time_ms)
 {
-    timespec time_ts;
+    struct timespec time_ts;
     time_ts.tv_sec = (time_ms >= 0) ? time_ms/1e3 : time_ms/1e3-1;  
     time_ts.tv_nsec = (time_ms - time_ts.tv_sec*1e3) * 1e6;         
     return time_ts; 
@@ -19,14 +19,14 @@ timespec timespec_from_ms(double time_ms)
 
 timespec timespec_now()
 {
-	timespec time_now;
+	struct timespec time_now;
 	clock_gettime(CLOCK_REALTIME, &time_now);
 	return time_now;
 }
 
 timespec timespec_negate(const timespec& time_ts)
 {
-    timespec time_neg;
+    struct timespec time_neg;
     time_neg.tv_nsec = 1e9 - time_ts.tv_nsec;                                       
     time_neg.tv_sec = -time_ts.tv_sec - 1;                      
     return time_neg;
@@ -34,7 +34,7 @@ timespec timespec_negate(const timespec& time_ts)
 
 timespec timespec_add(const timespec& time1_ts, const timespec& time2_ts)
 {
-	timespec time_add;
+	struct timespec time_add;
     time_add.tv_nsec = time1_ts.tv_nsec + time2_ts.tv_nsec;   
     time_add.tv_sec = time1_ts.tv_sec + time2_ts.tv_sec; 
     if (time_add.tv_nsec >= 1e9)
@@ -47,7 +47,7 @@ timespec timespec_add(const timespec& time1_ts, const timespec& time2_ts)
 
 timespec timespec_subtract(const timespec& time1_ts, const timespec& time2_ts)
 {
-	timespec time_sub;
+	struct timespec time_sub;
     time_sub.tv_nsec = time1_ts.tv_nsec - time2_ts.tv_nsec;   
     time_sub.tv_sec = time1_ts.tv_sec - time2_ts.tv_sec; 
     if (time_sub.tv_nsec < 0)
@@ -60,7 +60,7 @@ timespec timespec_subtract(const timespec& time1_ts, const timespec& time2_ts)
 
 timespec timespec_wait(const timespec& delay_ts)
 {
-    timespec rem_ts;                                      
+    struct timespec rem_ts;                                      
     if(nanosleep(&delay_ts, &rem_ts) == -1)                    
     {
         if(errno == EINTR)

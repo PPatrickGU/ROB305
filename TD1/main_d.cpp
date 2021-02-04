@@ -10,11 +10,11 @@
 
 
 unsigned int incr(unsigned int nLoops, double* pCounter, bool* pStop);
-void signal_handle(int, siginfo_t* si, void*);
+void myHandler(int, siginfo_t* si, void*);
 unsigned int mesure();
 std::array<double,2> calib();
 
-void signal_handle(int, siginfo_t* si, void*)
+void myHandler(int, siginfo_t* si, void*)
 {
     *((bool*)si->si_value.sival_ptr) = true;
     // std::cout << "stop is set true: " <<  *((bool*)si->si_value.sival_ptr) <<  std::endl;
@@ -38,42 +38,41 @@ unsigned int mesure(time_t sec, long nsec)
     double counter = 0.0;
 
 	struct sigaction sa;
-	memset(&sa, 0, sizeof(struct sigaction));
-    struct sigevent evp;  
-    memset(&evp, 0, sizeof(struct sigevent));	
-    timer_t timer; 
+    timer_t tid; 
 
 	// define the sigaction 
     sa.sa_flags = SA_SIGINFO;  // in order to use the sa_sigaction as the call_back function
-    sa.sa_sigaction = signal_handle;
+    sa.sa_sigaction = myHandler;
     sigemptyset(&sa.sa_mask);
-    sigaction(SIGIO, &sa, NULL);
-	// define the sigevent    
-    evp.sigev_notify = SIGEV_SIGNAL;  //SIGEV_SIGNAL
-    evp.sigev_signo = SIGIO;  
-    evp.sigev_value.sival_ptr = (void*)&stop; 
+    sigaction(SIGRTMIN, &sa, NULL);
+	
+	// define the sigevent
+	struct sigevent sev;      
+    sev.sigev_notify = SIGEV_SIGNAL;  //SIGEV_SIGNAL
+    sev.sigev_signo = SIGIO;  
+    sev.sigev_value.sival_ptr = (void*)&stop; 
     int ret;  	
-	ret = timer_create(CLOCK_REALTIME, &evp, &timer);
+	ret = timer_create(CLOCK_REALTIME, &sev, &tid);
 	if (ret)
 		perror("timer_create");
 
-	struct itimerspec ts; 
-	ts.it_interval.tv_sec = 0;  // the time interval
-	ts.it_interval.tv_nsec = 0;
-	ts.it_value.tv_sec = sec; // the delay time start
-	ts.it_value.tv_nsec = nsec;
-	ret = timer_settime(timer, 0, &ts, NULL);
+	struct itimerspec its; 
+	its.it_interval.tv_sec = 0;  // the time interval
+	its.it_interval.tv_nsec = 0;
+	its.it_value.tv_sec = sec; // the delay time start
+	its.it_value.tv_nsec = nsec;
+	ret = timer_settime(tid, 0, &its, NULL);
 	if (ret)
 		perror("timer_settime");
 
-   	timespec time_begin, time_end;
+   	struct timespec time_begin, time_end;
 	time_begin = timespec_now();
     unsigned int iLoop = incr(nLoops, &counter, &stop);          
     time_end = timespec_now(); 
 
     std::cout <<  "Counter value: " << counter << std::fixed << std::setprecision(9) << ", Time needed: " << timespec_to_ms(time_end - time_begin)/1000 << " seconds" <<std::endl; 
 
-	timer_delete(timer);
+	timer_delete(tid);
 	return iLoop;
 }
 
