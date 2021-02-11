@@ -15,7 +15,7 @@ void incr(unsigned int nLoops, double* pCounter)
 
 int main(int argc, char* argv[])
 {
-    unsigned int nLoops = strtoul(argv[1], NULL, 10);
+    unsigned int nLoops = std::stoul(argv[1], NULL, 10);
     double counter = 0.0;
    	struct timespec time_begin, time_end;
 
