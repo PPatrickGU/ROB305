@@ -12,6 +12,8 @@
 struct Data {
 	volatile unsigned int nLoops;
 	volatile double counter;
+	bool protection;
+	pthread_mutex_t mutex;
 };
 
 void incr(volatile unsigned int nLoops, volatile double* pCounter)
@@ -22,17 +24,24 @@ void incr(volatile unsigned int nLoops, volatile double* pCounter)
 	}
 }
  
+
 void* call_incr(void* v_data)
 {
-	Data* p_data = (Data*) v_data;
-	incr(p_data -> nLoops, &p_data -> counter);
-	return v_data;
+    Data* p_data = (Data*) v_data;
+    if(p_data->protection) 
+    {
+    	pthread_mutex_lock(&p_data->mutex);
+	    incr(p_data->nLoops, &p_data->counter);
+    	pthread_mutex_unlock(&p_data->mutex);
+    }
+    else incr(p_data->nLoops, &p_data->counter);
+    return v_data;
 }
 
 
 int main(int argc, char* argv[])
 {
-	if (argc == 4)
+	if (argc == 5 || argc == 4)
 	{
 		// Input parameters
 		unsigned int nLoops = std::stoi(argv[1]);
@@ -41,6 +50,12 @@ int main(int argc, char* argv[])
 		if(std::string(argv[3]) == "SCHED_RR") schedPolicy = SCHED_RR;               
     	else if(std::string(argv[3]) == "SCHED_FIFO") schedPolicy = SCHED_FIFO;      
     	else schedPolicy = SCHED_OTHER;
+    	bool protection = (argc == 5 && std::string(argv[4]) == "protected") ? true : false;
+    	
+    	// Set mutex
+    	pthread_mutex_t mutex;
+		Data data = {nLoops, 0.0, protection, mutex};
+    	if (protection) pthread_mutex_init(&data.mutex, NULL);
 
 		// Main priority
 		struct sched_param schedParam;
@@ -58,20 +73,20 @@ int main(int argc, char* argv[])
 		schedParams.sched_priority = (schedPolicy == SCHED_OTHER) ? 0 : priority;
 		pthread_attr_setschedparam(&attr, &schedParams);
 
-		Data data = {nLoops, 0.0};
-
 		// Create pthreads
 		pthread_t incrementThread[nTasks];
 		struct timespec begin, end;
 		clock_gettime(CLOCK_REALTIME, &begin);
+
 		for (unsigned int i=0;i<nTasks;i++)
 		{
 			pthread_create(&incrementThread[i], NULL, call_incr, (void*)&data);
 		}
-
+		
 		// Join pthreads
 		for (unsigned int i=0; i<nTasks;i++) pthread_join(incrementThread[i], NULL);
 		pthread_attr_destroy(&attr);
+		pthread_mutex_destroy(&data.mutex);
 
 		clock_gettime(CLOCK_REALTIME, &end);
 
@@ -80,7 +95,7 @@ int main(int argc, char* argv[])
 	}
 	else
 	{
-		std::cout << "Error: number of arguments. 3 expected." << std::endl;
+		std::cout << "Error: number of arguments. 4 expected." << std::endl;
 	}
 
 	return 0;
