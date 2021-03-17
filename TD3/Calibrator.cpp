@@ -10,7 +10,7 @@
 #include <vector>
 #include <iostream>
 
-Calibrator::Calibrator(double samplingPeriod_ms, unsigned int nSamples) : PeriodicTimer(), nSamples(nSamples)
+Calibrator::Calibrator(double samplingPeriod_ms, unsigned int nSamples) : nSamples(nSamples)
 {
 	std::cout << "---Start of calibration:---"  << std::endl; 
 	start(samplingPeriod_ms);
