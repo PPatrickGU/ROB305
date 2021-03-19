@@ -21,6 +21,7 @@ private:
 public:
 	// Constructor
 	CpuLoop(Calibrator& calibrator);
+	
 	// Run the Looper objet with a given time
 	void runTime(double duration_ms);
 };

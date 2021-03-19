@@ -1,30 +1,26 @@
 /* =====================================================================================================================
- * Chrono.h
+ * main_td3b.cpp
  * ---------------------------------------------------------------------------------------------------------------------
- * Defines a Chrono classe
+ * Main function to create veridy an object countdown
  * @author Zhaoyi Guan & Dajing Gu
  * =====================================================================================================================
  */
 
-#ifndef Chrono_h_INCLUDED
-#define Chrono_h_INCLUDED
+#include "timespec.h"
+#include "CountDown.h"
+#include <stdio.h>
+#include <iostream>
+#include <string>
+#include <iomanip> 
 
-#include <time.h>
 
-class Chrono
+int main()
 {
-private:
-	timespec startTime_;
-	timespec stopTime_;
+    //verifying countdown
+    CountDown countDown(10);
+    countDown.start(200);
 
-public:
-	Chrono();
-	void stop();			
-	void restart();
-	bool isActive();
-	double startTime();		
-	double stopTime();
-	double lap();
-};
+    while (countDown.getCount() > 0){}
 
-#endif
+    return 0;
+}

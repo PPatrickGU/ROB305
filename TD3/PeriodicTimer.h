@@ -14,7 +14,7 @@
 class PeriodicTimer : public Timer
 {
 public:
-
+	// Start the perodic timer
 	void start(double duration_ms);
 };
 

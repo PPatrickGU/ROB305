@@ -18,19 +18,30 @@ class Calibrator : public PeriodicTimer
 {
 private:
 	
-	double a; // Parameter a of l(t)=a*t+b
-	double b; // Parameter b of l(t)=a*t+b
-	std::vector<double> samples; //Vector of samples obtained from different timer
+	// Parameter a of l(t)=a*t+b
+	double a; 
+
+	// Parameter b of l(t)=a*t+b
+	double b; 
+
+	//Vector of samples obtained from different timer
+	std::vector<double> samples; 
+
 	unsigned int nSamples; 
 
 public:
-	Calibrator(double samplingPeriod_ms, unsigned nSamples); // Constructor
-	double nLoops(double duration); // Calculate the estimated number of loops 
+	// Constructor
+	Calibrator(double samplingPeriod_ms, unsigned nSamples); 
+
+	// Calculate the estimated number of loops 
+	double nLoops(double duration); 
+
 	Looper looper; 
 	
 
 protected:
-	void callback(); // Handler function
+	// Handler function
+	void callback(); 
 };
 
 #endif

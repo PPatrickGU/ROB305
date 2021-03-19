@@ -1,30 +1,33 @@
 /* =====================================================================================================================
- * Chrono.h
+ * IncrMutexThread.h
  * ---------------------------------------------------------------------------------------------------------------------
- * Defines a Chrono classe
+ * Defines the class IncrMutexThread, which has a mutex compared with the class IncrThread .
  * @author Zhaoyi Guan & Dajing Gu
  * =====================================================================================================================
  */
 
-#ifndef Chrono_h_INCLUDED
-#define Chrono_h_INCLUDED
+#ifndef IncrMutexThread_h_INCLUDED
+#define IncrMutexThread_h_INCLUDED
 
+#include "IncrThread.h"
+#include "Mutex.h"
+#include "data.h"
 #include <time.h>
 
-class Chrono
+class IncrMutexThread : public IncrThread
 {
-private:
-	timespec startTime_;
-	timespec stopTime_;
+public :
+	// Constructor
+	IncrMutexThread(Data* data, Mutex* mutex);
 
-public:
-	Chrono();
-	void stop();			
-	void restart();
-	bool isActive();
-	double startTime();		
-	double stopTime();
-	double lap();
+	// Destructor
+	~IncrMutexThread();
+
+
+protected :
+	Mutex* mutex;
+
+	void run();
 };
 
 #endif

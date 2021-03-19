@@ -22,7 +22,6 @@ public:
 
 protected:
 	// implementation of the pure virtual function Callback()
-
 	void callback();
 };
 

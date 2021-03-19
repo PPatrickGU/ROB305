@@ -16,13 +16,21 @@
 class Looper
 {
 private:
-	volatile bool doStop; // Stop the looper when doStop is true
-	double iLoop; // Current number of loops executed
+	// Stop the looper when doStop is true
+	volatile bool doStop; 
+
+	// Current number of loops executed
+	double iLoop; 
 
 public:
-	double runLoop(double nLoops = __DBL_MAX__); // Runs a given number of iterations of a loop 
-	double getSample(); //Return the current number of loops executed
-	double stopLoop(); //Stop the looper and return the number of loops executed
+	// Runs a given number of iterations of a loop 
+	double runLoop(double nLoops = __DBL_MAX__); 
+
+	//Return the current number of loops executed
+	double getSample(); 
+
+	//Stop the looper and return the number of loops executed
+	double stopLoop(); 
 };
 
 

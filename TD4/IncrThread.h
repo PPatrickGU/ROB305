@@ -1,30 +1,31 @@
 /* =====================================================================================================================
- * Chrono.h
+ * IncrThread.h
  * ---------------------------------------------------------------------------------------------------------------------
- * Defines a Chrono classe
+ * Defines the class IncrThread that increments a counter value.
  * @author Zhaoyi Guan & Dajing Gu
  * =====================================================================================================================
  */
 
-#ifndef Chrono_h_INCLUDED
-#define Chrono_h_INCLUDED
+#ifndef IncrThread_h_INCLUDED
+#define IncrThread_h_INCLUDED
 
+#include "Thread.h"
+#include "data.h"
 #include <time.h>
 
-class Chrono
+class IncrThread : public Thread
 {
-private:
-	timespec startTime_;
-	timespec stopTime_;
 
-public:
-	Chrono();
-	void stop();			
-	void restart();
-	bool isActive();
-	double startTime();		
-	double stopTime();
-	double lap();
+public :
+	// Constructor
+	IncrThread(Data* data);
+
+	// Destructor
+	~IncrThread();
+
+	Data* data;
+
+	void run();
 };
 
 #endif
