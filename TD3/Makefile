@@ -1,4 +1,4 @@
-CFLAGS = -c -Wall -Werror -std=c++11
+CFLAGS = -c -Wall -Werror -Wextra -std=c++11
 
 all: main_td3a main_td3b main_td3c
 

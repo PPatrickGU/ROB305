@@ -1,4 +1,4 @@
-CFLAGS = -c -Wall -Werror -std=c++11
+CFLAGS = -c -Wall -Werror -Wextra -std=c++11
 
 all: main_td1a main_td1b main_td1c main_td1d
 
@@ -17,7 +17,7 @@ main_td1b: $(OBJS_b)
 	g++ $(OBJS_b) -o main_td1b -lpthread -lrt 
 
 main_td1c: $(OBJS_c)
-	g++ $(OBJS_c) -o main_td1c 
+	g++ $(OBJS_c) -o main_td1c -lpthread -lrt 
 
 main_td1d: $(OBJS_d)
 	g++ $(OBJS_d) -o main_td1d -lpthread -lrt 

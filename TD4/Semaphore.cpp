@@ -39,9 +39,9 @@ void Semaphore::take()
 bool Semaphore::take(double timeout_ms)
 {
     Mutex::Lock lock(mutex);
-    if(counter == 0) lock.wait(timeout_ms);
-    if(counter == 0)
+    if (counter == 0)
     {
+        lock.wait(timeout_ms);
         lock.notify();
         lock.~Lock();
         return false;
