@@ -1,30 +1,30 @@
 /* =====================================================================================================================
- * CpuLoop.h
+ * Chrono.h
  * ---------------------------------------------------------------------------------------------------------------------
- * Defines the class CpuLoop deriving from Looper which will make a calibration given a time.
+ * Defines a Chrono classe
  * @author Zhaoyi Guan & Dajing Gu
  * =====================================================================================================================
  */
 
-#ifndef CpuLoop_h_INCLUDED
-#define CpuLoop_h_INCLUDED
+#ifndef Chrono_h_INCLUDED
+#define Chrono_h_INCLUDED
 
-#include "Calibrator.h"
-#include "Looper.h"
+#include <time.h>
 
-class CpuLoop : public Looper
+class Chrono
 {
 private:
-	// Reference on a calibrator object
-	Calibrator& calibrator;
+	timespec startTime_;
+	timespec stopTime_;
 
 public:
-	// Constructor
-	CpuLoop(Calibrator& calibrator);
-	
-	// Run the Looper objet with a given time
-	void runTime(double duration_ms);
+	Chrono();
+	void stop();			
+	void restart();
+	bool isActive();
+	double startTime();		
+	double stopTime();
+	double lap();
 };
 
 #endif
-

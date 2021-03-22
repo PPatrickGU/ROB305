@@ -21,7 +21,7 @@ void incr(unsigned int nLoops, double* pCounter)
     }
 }
 
-int main(int argc, char* argv[])
+int main(int, char* argv[])
 {
     unsigned int nLoops = std::stoul(argv[1], NULL, 10);
     double counter = 0.0;

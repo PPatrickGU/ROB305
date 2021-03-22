@@ -96,7 +96,7 @@ std::array<double,2> calib()
 	return parameters;
 }
 
-int main(int argc, char* argv[])
+int main(int , char**)
 {
 	std::cout << "Start calibration:"  << std::endl;    
 	std::array<double,2> parameters;

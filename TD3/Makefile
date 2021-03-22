@@ -49,7 +49,7 @@ Looper.o: Looper.cpp Looper.h
 Calibrator.o: Calibrator.cpp Calibrator.h
 	g++ $(CFLAGS) Calibrator.cpp -o Calibrator.o	
 
-CpuLooper.o: CpuLoop.cpp CpuLoop.h
+CpuLoop.o: CpuLoop.cpp CpuLoop.h
 	g++ $(CFLAGS) CpuLoop.cpp -o CpuLoop.o	
 
 clean:
