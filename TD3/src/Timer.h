@@ -15,7 +15,6 @@
 class Timer
 {
 public:
-
 	Timer();
 	~Timer();	
 	
@@ -23,7 +22,6 @@ public:
 	void stop();
 
 protected:
-
 	timer_t timerId;
 	// it is pure virtual since it will be different in each different time
 	virtual void callback() = 0;

@@ -42,7 +42,7 @@ Calibrator::Calibrator(double samplingPeriod_ms, unsigned int nSamples) : nSampl
 void Calibrator::callback()
 {
 	double sample = looper.getSample();
-	std::cout << "The value of the sample is : " << sample << std::endl;
+	std::cout << "Sample value : " << sample << std::endl;
 	samples.push_back(sample);
 	if (samples.size() == nSamples) 
 	{

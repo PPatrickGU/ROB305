@@ -59,7 +59,7 @@ unsigned int mesure(time_t sec, long nsec)
 	// define the sigevent
 	struct sigevent sev;      
     sev.sigev_notify = SIGEV_SIGNAL;  //SIGEV_SIGNAL
-    sev.sigev_signo = SIGIO;  
+    sev.sigev_signo = SIGRTMIN;  
     sev.sigev_value.sival_ptr = (void*)&stop; 
     int ret;  	
 	ret = timer_create(CLOCK_REALTIME, &sev, &tid);
@@ -80,7 +80,7 @@ unsigned int mesure(time_t sec, long nsec)
     unsigned int iLoop = incr(nLoops, &counter, &stop);          
     time_end = timespec_now(); 
 
-    std::cout <<  "Counter value: " << counter << std::fixed << std::setprecision(9) << ", Time needed: " << timespec_to_ms(time_end - time_begin)/1000 << " seconds" <<std::endl; 
+    std::cout <<  std::fixed <<  "Counter value: " << counter << std::setprecision(9) << ", Time needed: " << timespec_to_ms(time_end - time_begin)/1000 << " seconds" <<std::endl; 
 
 	timer_delete(tid);
 	return iLoop;
@@ -89,23 +89,26 @@ unsigned int mesure(time_t sec, long nsec)
 std::array<double,2> calib()
 {	
 	std::array<double,2> parameters;
-	double I4 = (double)mesure(4, 0);
-	double I6 = (double)mesure(6, 0);
-	parameters[0] = (I6 - I4)/(6.0 - 4.0); 
-	parameters[1] = I4 - parameters[0] * 4.0;
+	double I2 = (double)mesure(2, 0);
+	double I5 = (double)mesure(5, 0);
+	parameters[0] = (I5 - I2)/(5.0 - 2.0); 
+	parameters[1] = I2 - parameters[0] * 2.0;
 	return parameters;
 }
 
 int main(int , char**)
 {
-	std::cout << "Start calibration:"  << std::endl;    
+	std::cout << "---Start of calibration:---"  << std::endl;    
 	std::array<double,2> parameters;
 	parameters = calib();
 	std::cout << "Results : a = " << parameters[0]<< ", b = " <<  parameters[1] << std::endl;  
 
 	std::cout << "\nStart testing the parameters of the calibration:"  << std::endl;  
-	mesure(10, 0);
+	unsigned int loop = mesure(10, 0);
+	unsigned int loopCal = parameters[0]*10 + parameters[1];
 	std::cout << "Number of loops calculated for 10 seconds is: "  << parameters[0]*10 + parameters[1] << std::endl;
+	std::cout << "Accuracy : " << (1-(abs(loop - loopCal) / double(loop) ))*100 << "%" << std::endl;
+	std::cout << "---End of calibration---"  << std::endl; 
 	return 0;
 
 }

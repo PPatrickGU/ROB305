@@ -76,9 +76,7 @@ int main(int argc, char* argv[])
 		pthread_attr_setinheritsched(&attr, PTHREAD_EXPLICIT_SCHED);
 		pthread_attr_setschedpolicy(&attr, schedPolicy);
 		sched_param schedParams;
-		int priority = rand()%100 + 1; 
-	    if (priority == 100) priority = priority - 2;  // Get a random number between 1 and 98 (because priority_main = 99)
-		schedParams.sched_priority = (schedPolicy == SCHED_OTHER) ? 0 : priority;
+		int priority = rand()%98 + 1; 
 		pthread_attr_setschedparam(&attr, &schedParams);
 
 		// Create pthreads

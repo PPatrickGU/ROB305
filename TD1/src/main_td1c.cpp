@@ -32,6 +32,6 @@ int main(int, char* argv[])
     time_end = timespec_now();
 
     std::cout << "Counter value: " << counter << std::endl;    
-    std::cout << std::fixed << std::setprecision(9) << "Time needed: " << (timespec_to_ms(time_end - time_begin)/1000) << " seconds" <<std::endl; 
+    std::cout << std::fixed << std::setprecision(12) << "Time needed: " << (timespec_to_ms(time_end - time_begin)/1000) << " seconds" <<std::endl; 
     return 0;
 }

@@ -43,7 +43,7 @@ int main()
 	std::cout << "Secondes:" << time_from_ms.tv_sec << ", Nanosec: " << time_from_ms.tv_nsec << std::endl;
 
 	// Test timespec_add
-	std::cout << "\n" << "Test timespec_add:" <<std::endl;
+	std::cout << "\n" << "Test timespec_add (origin + negate):" <<std::endl;
 	struct timespec time_add;
 	time_add = timespec_add(time_now, time_neg);
 	std::cout << "Secondes:" << time_add.tv_sec << ", Nanosec: " << time_add.tv_nsec << std::endl;

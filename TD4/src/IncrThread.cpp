@@ -11,7 +11,7 @@
 
 IncrThread::IncrThread(Data* data): Thread(), data(data)
 {
-	int priority = rand()%99 + 1;       //I get a number between 1 and 100
+	int priority = rand()%98 + 1;       //I get a number between 1 and 99
     int schedPriority = data->schedPolicy == SCHED_OTHER ? 0 : priority;
     setScheduling(data->schedPolicy, schedPriority);
 }

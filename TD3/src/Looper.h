@@ -26,10 +26,10 @@ public:
 	// Runs a given number of iterations of a loop 
 	double runLoop(double nLoops = __DBL_MAX__); 
 
-	//Return the current number of loops executed
+	// Return the current number of loops executed
 	double getSample(); 
 
-	//Stop the looper and return the number of loops executed
+	// Stop the looper and return the number of loops executed
 	double stopLoop(); 
 };
 
