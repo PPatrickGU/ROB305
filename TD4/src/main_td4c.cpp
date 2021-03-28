@@ -98,7 +98,7 @@ int main(int argc, char* argv[])
     }
     else
     {
-        std::cout << "Error: number of arguments. 3 expected." << std::endl;
+        std::cout << "Error: number of arguments. 3 expected : <nProd> <nCons> <nItems>" << std::endl;
     }
 
     return 0;

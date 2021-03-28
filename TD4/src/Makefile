@@ -9,7 +9,7 @@ OBJS_b = main_td4b.o timespec.o Chrono.o PosixThread.o Thread.o IncrThread.o Mut
 
 OBJS_c = main_td4c.o timespec.o Chrono.o PosixThread.o Thread.o Mutex.o Semaphore.o SemaProducer.o SemaConsumer.o
 
-OBJS_d = main_td4d.o timespec.o Chrono.o PosixThread.o Thread.o Mutex.o Fifo.o FifoProducer.o FifoConsumer.o
+OBJS_d = main_td4d.o timespec.o Chrono.o PosixThread.o Thread.o Mutex.o FifoProducer.o FifoConsumer.o
 
 main_td4a: $(OBJS_a)
 	g++ $(OBJS_a) -o main_td4a -lpthread -lrt 
@@ -20,8 +20,8 @@ main_td4b: $(OBJS_b)
 main_td4c: $(OBJS_c)
 	g++ $(OBJS_c) -o main_td4c -lpthread -lrt 
 
-main_td4d: $(OBJS_c)
-	g++ $(OBJS_c) -o main_td4d -lpthread -lrt 
+main_td4d: $(OBJS_d)
+	g++ $(OBJS_d) -o main_td4d -lpthread -lrt 
 
 main_td4a.o: main_td4a.cpp 
 	g++ $(CFLAGS) main_td4a.cpp -o main_td4a.o
@@ -68,10 +68,10 @@ SemaConsumer.o: SemaConsumer.cpp SemaConsumer.h
 Fifo.o: Fifo.hpp
 	g++ $(CFLAGS) Fifo.hpp -o Fifo.o	
 
-FifoProducer.o: FifoProducer.cpp FifoProducer.h
+FifoProducer.o: FifoProducer.cpp FifoProducer.h 
 	g++ $(CFLAGS) FifoProducer.cpp -o FifoProducer.o	
 
-FifoConsumer.o: FifoConsumer.cpp FifoConsumer.h
+FifoConsumer.o: FifoConsumer.cpp FifoConsumer.h 
 	g++ $(CFLAGS) FifoConsumer.cpp -o FifoConsumer.o	
 
 clean:

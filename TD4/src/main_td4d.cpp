@@ -84,11 +84,11 @@ int main(int argc, char* argv[])
 
         if(prod == cons)
         {
-            std::cout << "Result : Number correct \n" << std::endl;
+            std::cout << "\nResult : Number CORRECT\n" << std::endl;
         }
         else
         {
-            std::cout << "-----NUMBER ERROR-----\n" << std::endl;
+            std::cout << "\nResult : Number ERROR\n" << std::endl;
         }
 
         std::cout << "Time taken by all the producers : " << opThreadTimeProd << " ms" << std::endl;
@@ -98,7 +98,7 @@ int main(int argc, char* argv[])
     }
     else
     {
-        std::cout << "Error: number of arguments. 3 expected." << std::endl;
+        std::cout << "Error: number of arguments. 3 expected : <nProd> <nCons> <nItems>" << std::endl;
     }
 
     return 0;

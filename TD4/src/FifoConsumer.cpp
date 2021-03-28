@@ -20,9 +20,17 @@ FifoConsumer::~FifoConsumer()
 
 void FifoConsumer::run()
 {
-    while(fifo->pop(1000))
+	while(isActive)
     {
-        counter++;
+        try
+        {
+            fifo->pop(1000);
+            counter++;
+        }
+        catch(const Fifo<int>::EmptyException& e)
+        {
+            isActive = false;
+        }
     }
 }
 

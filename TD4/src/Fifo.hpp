@@ -21,7 +21,6 @@ private:
 	// Elements in the fifo
 	std::queue<T> elements;
 
-protected:
 	// Mutex element
 	Mutex mutex;
 
@@ -42,6 +41,7 @@ public:
 	// Remove the element at the top of the queue with a timeout
 	T pop(double timeout_ms);
 };
+
 
 template <typename T> void Fifo<T>::push(T element)
 {
