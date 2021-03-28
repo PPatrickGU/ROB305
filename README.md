@@ -1,258 +1,258 @@
 # **ROB305: Multitask design and real time operating system**
 
-***author: Zhaoyi Guan & Dajing Gu***
+*Author : Zhaoyi Guan & Dajing Gu*
 
 ## TD1
-
-### a
-For the Computer:
+### TD1-a
+For PC:
 
 ```
 cd TD1/src
 make
+./main_td1a
 
 ```
-For the Raspberry, after execution of the toolchain:
+For Raspberry PI:
 ```
-$CXX -Wall -Wextra main_td1a.cpp TimeSpec.cpp -lrt -o TD1a.out
-sshpass -p root scp *.out root@192.168.50.42:TD1/
-./TD1a.out
+$CXX -Wall -Wextra main_td1a.cpp timespec.cpp -lrt -o main_td1a.out
+sshpass -p root scp *.out root@192.168.50.47:TD1/
+./main_td1a.out
 ```
 
-### b
-For the Computer:
+### TD1-b
+For PC:
 ```
 cd TD1/src
-g++ main_td1b.cpp SignalHandler.cpp -o td1b -lrt -Wall -Wextra ---> normal compilation
-g++ -O3 main_td1b.cpp SignalHandler.cpp -o td1b -lrt -Wall -Wextra    ---> optimized compilation
-./td1b
+make
+./main_td1b
 ```
 
-For the Raspberry, after execution of the toolchain:
+For Raspberry PI:
 ```
-$CXX -Wall -Wextra main_td1b.cpp SignalHandler.cpp -lrt -lpthread -o TD1b.out
-sshpass -p root scp *.out root@192.168.50.42:TD1/
-./TD1b.out
+$CXX -Wall -Wextra main_td1b.cpp -lrt -lpthread -o main_td1b.out
+sshpass -p root scp *.out root@192.168.50.47:TD1/
+./main_td1b.out
 ```
 
-### c
-For the Computer:
+### TD1-c
+For PC:
 ```
 cd TD1/src
-g++ main_td1c.cpp TimeSpec.cpp -lrt -Wall -Wextra -o td1c
-./td1c <nLoops>
+make
+./main_td1c <nLoops>
 ``` 
 
-For the Raspberry, after execution of the toolchain:
+For Raspberry PI:
 ```
-$CXX -Wall -Wextra main_td1c.cpp TimeSpec.cpp -lrt -lpthread -o TD1c.out
-sshpass -p root scp *.out root@192.168.50.42:TD1/
-./TD1c.out <nLoops>
+$CXX -Wall -Wextra main_td1c.cpp timespec.cpp -lrt -lpthread -o main_td1c.out
+sshpass -p root scp *.out root@192.168.50.47:TD1/
+./main_td1c.out <nLoops>
 ```
-### d
-For the Computer:
-```
-cd TD1/src
-g++ main_td1d.cpp TimeSpec.cpp SignalHandler2.cpp -lrt -Wall -Wextra -o td1d
-./td1d
-```
-
-For the Raspberry, after execution of the toolchain:
-```
-$CXX -Wall -Wextra main_td1d.cpp TimeSpec.cpp SignalHandler2.cpp -lrt -lpthread -o TD1d.out
-sshpass -p root scp *.out root@192.168.50.42:TD1/
-./TD1d.out
-```
-
-### e
-For the Computer:
+### TD1-d
+For PC:
 ```
 cd TD1/src
-g++ main_td1e.cpp TimeSpec.cpp SignalHandler2.cpp -lrt -Wall -Wextra -o td1e
-./td1e
+make
+./main_td1d
 ```
-For the Raspberry, after execution of the toolchain:
+
+For Raspberry PI:
 ```
-$CXX -Wall -Wextra main_td1e.cpp TimeSpec.cpp SignalHandler2.cpp -lrt -lpthread -o TD1e.out
-sshpass -p root scp *.out root@192.168.50.42:TD1/
-./TD1e.out
+$CXX -Wall -Wextra main_td1d.cpp timespec.cpp -lrt -lpthread -o main_td1d.out
+sshpass -p root scp *.out root@192.168.50.47:TD1/
+./main_td1d.out
+```
+
+### TD1-e
+For PC:
+```
+cd TD1/src
+make
+./main_td1e
+```
+
+For Raspberry PI:
+```
+$CXX -Wall -Wextra main_td1e.cpp timespec.cpp -lrt -lpthread -o main_td1e.out
+sshpass -p root scp *.out root@192.168.50.47:TD1/
+./main_td1e.out
 ```
 
 ## TD2
 
-### a
-For the Computer:
+### TD2-a
+For PC:
 ```
 cd TD2/src
-g++ main_td2a.cpp TimeSpec.cpp -lrt -lpthread -Wall -Wextra -o td2a
-./td2a <nLoops> <nTasks>
+make
+./main_td2a <nLoops> <nTasks>
 ```
-For the Raspberry, after execution of the toolchain:
+For Raspberry PI:
 ```
-$CXX -Wall -Wextra main_td2a.cpp TimeSpec.cpp -lrt -lpthread -o TD2a.out
-sshpass -p root scp *.out root@192.168.50.42:TD2/
-./TD2a.out <nLoops> <nTasks>
+$CXX -Wall -Wextra main_td2a.cpp timespec.cpp -lrt -lpthread -o main_td2a.out
+sshpass -p root scp *.out root@192.168.50.47:TD2/
+./main_td2a.out <nLoops> <nTasks>
 ```
 
-### b
-For the Computer:
+### TD2-b
+For PC:
 ```
 cd TD2/src
-g++ main_td2b.cpp TimeSpec.cpp -lrt -lpthread -Wall -Wextra -o td2b
+make
+./main_td2b <nLoops> <nTasks> <policy>
+for example:
+./main_td2b <nLoops> <nTasks> <policy>
+./main_td2b 3 4 SCHED_OTHER
+./main_td2b 3 4 SCHED_RR
+./main_td2b 3 4 SCHED_FIFO
+```
+For Raspberry PI:
+```
+$CXX -Wall -Wextra main_td2b.cpp timespec.cpp -lrt -lpthread -o main_td2b.out
+sshpass -p root scp *.out root@192.168.50.47:TD2/
+./main_td2b <nLoops> <nTasks> <policy>
 
 example:
-./td2b <nLoops> <nTasks> <policy>
-./td2b 3 4 SCHED_OTHER
-./td2b 3 4 SCHED_RR
-./td2b 3 4 SCHED_FIFO
+./main_td2b 50 100 SCHED_OTHER
+./main_td2b 50 100 SCHED_RR
+./main_td2b 50 100 SCHED_FIFO
 ```
-For the Raspberry, after execution of the toolchain:
-```
-$CXX -Wall -Wextra main_td2b.cpp TimeSpec.cpp -lrt -lpthread -o TD2b.out
-sshpass -p root scp *.out root@192.168.50.42:TD2/
-./td2b <nLoops> <nTasks> <policy>
-
-example:
-./td2b 3 4 SCHED_OTHER
-./td2b 3 4 SCHED_RR
-./td2b 3 4 SCHED_FIFO
-```
-### c
-For the Computer:
+### TD2-c
+For PC:
 ```
 cd TD2/src
-g++ main_td2c.cpp TimeSpec.cpp -lrt -lpthread -Wall -Wextra -o td2c
-./td2c <nLoop> <nTasks> <policy> <protected>
+make
+./main_td2c <nLoop> <nTasks> <policy> <ifProtected>
+
+for example:
+./main_td2c 50 100 0 1
+./main_td2c 50 100 1 0
+./main_td2c 50 100 2 1
+```
+For Raspberry PI:
+```
+$CXX -Wall -Wextra main_td2c.cpp timespec.cpp -lrt -lpthread -o main_td2c.out
+sshpass -p root scp *.out root@192.168.50.47:TD2/
 
 example:
-./td2c 3 4 0 protected
-./td2c 3 4 1 protected
-./td2c 3 4 2 protected
+./main_td2c <nLoop> <nTasks> <policy> <ifProtected>
+./main_td2c.out 50 100 0 1
+./main_td2c.out 50 100 1 0
+./main_td2c.out 50 100 2 1
 ```
-For the Raspberry, after execution of the toolchain:
-```
-$CXX -Wall -Wextra main_td2c.cpp TimeSpec.cpp -lrt -lpthread -o TD2c.out
-sshpass -p root scp *.out root@192.168.50.42:TD2/
 
-example:
-./TD2c.out <nLoop> <nTasks> <policy> <protected>
-./TD2c.out 3 4 0 protected
-./TD2c.out 3 4 1 protected
-./TD2c.out 3 4 2 protected
-```
 ## TD3
 
-### a
-For the Computer:
+### TD3-a
+For PC:
 ```
 cd TD3/src
-g++ main_td3a.cpp TimeSpec.cpp Chrono.cpp -lrt -lpthread -Wall -Wextra -o td3a
-./td3a
+make
+./main_td3a
 ```
-For the Raspberry, after execution of the toolchain:
+For Raspberry PI:
 ```
-$CXX -Wall -Wextra main_td3a.cpp TimeSpec.cpp Chrono.cpp -lrt -lpthread -o TD3a.out
-sshpass -p root scp *.out root@192.168.50.42:TD3/
-./TD3a.out
+$CXX -Wall -Wextra main_td3a.cpp timespec.cpp Chrono.cpp -lrt -lpthread -o main_td3a.out
+sshpass -p root scp *.out root@192.168.50.47:TD3/
+./main_td3a.out
 ```
 
-### b
-For the Computer:
+### TD3-b
+For PC:
 ```
 cd TD3/src
-g++ main_td3b.cpp TimeSpec.cpp Timer.cpp CountDown.cpp PeriodicTimer.cpp -lrt -lpthread -Wall -Wextra -o td3b
-./td3b
+make
+./main_td3b
 ```
-For the Raspberry, after execution of the toolchain:
+For Raspberry PI:
 ```
-$CXX -Wall -Wextra main_td3b.cpp TimeSpec.cpp Timer.cpp CountDown.cpp PeriodicTimer.cpp -lrt -lpthread -o TD3b.out
-sshpass -p root scp *.out root@192.168.50.42:TD3/
-./TD3b.out
+$CXX -Wall -Wextra main_td3b.cpp timespec.cpp Timer.cpp CountDown.cpp PeriodicTimer.cpp -lrt -lpthread -o main_td3b.out
+sshpass -p root scp *.out root@192.168.50.47:TD3/
+./main_td3a.out
 ```
-### c
-For the Computer:
+### TD3-c
+For PC:
 ```
 cd TD3/src
-g++ main_td3c.cpp TimeSpec.cpp Timer.cpp PeriodicTimer.cpp Looper.cpp CpuLoop.cpp Chrono.cpp Calibrator.cpp -lrt -lpthread -Wall -Wextra -o td3c
-./td3c
+make
+./main_td3c
 ```
-For the Raspberry, after execution of the toolchain:
+For Raspberry PI:
 ```
-$CXX -Wall -Wextra main_td3c.cpp TimeSpec.cpp Timer.cpp PeriodicTimer.cpp Looper.cpp CpuLoop.cpp Chrono.cpp Calibrator.cpp -lrt -lpthread -Wno-psabi -o TD3c.out
-sshpass -p root scp *.out root@192.168.50.42:TD3/
-./TD3c.out
+$CXX -Wall -Wextra main_td3c.cpp timespec.cpp Timer.cpp PeriodicTimer.cpp Looper.cpp CpuLoop.cpp Chrono.cpp Calibrator.cpp -lrt -lpthread -Wno-psabi -o TD3c.out
+sshpass -p root scp *.out root@192.168.50.47:TD3/
+./main_td3c.out
 ```
+
 ## TD4
+### TD4-a
+For PC:
+```
+cd TD4/src
+make
+./main_td4a <nLoop> <nThreads> <policy>
+```
+```
 
-### a
-For the Computer:
+For Raspberry PI:
+```
+$CXX -Wall -Wextra main_td4a.cpp Chrono.cpp Incr.cpp PosixThread.cpp Thread.cpp timespec.cpp -lrt -lpthread -o main_td4a.out
+sshpass -p root scp *.out root@192.168.50.47:TD4/
+./main_td4a.out.out <nLoop> <nThreads> <policy>
+```
+### TD4-b
+For PC:
 ```
 cd TD4/src
-g++ main_td4a.cpp Chrono.cpp Incr.cpp PosixThread.cpp Thread.cpp TimeSpec.cpp -lrt -lpthread -Wall -Wextra -o td4a
-./td4a <nLoop> <nThreads> <policy>
+make
+./main_td4b <nLoop> <nThreads> <policy>
 ```
 ```
-In order to make it work for SCHED_RR and SCHED_FIFO we have to add sudo at the beginning of the compilation and execution
+
+For Raspberry PI:
 ```
-For the Raspberry, after execution of the toolchain:
+$CXX -Wall -Wextra main_td4b.cpp Mutex.cpp Chrono.cpp IncrMutex.cpp PosixThread.cpp Thread.cpp timespec.cpp Mutex/*.cpp -lrt -lpthread -o main_td4b.out
+sshpass -p root scp *.out root@192.168.50.47:TD4/
+./main_td4b.out <nLoop> <nThreads> <policy>
 ```
-$CXX -Wall -Wextra main_td4a.cpp Chrono.cpp Incr.cpp PosixThread.cpp Thread.cpp TimeSpec.cpp -lrt -lpthread -o TD4a.out
-sshpass -p root scp *.out root@192.168.50.42:TD4/
-./TD4a.out <nLoop> <nThreads> <policy>
-```
-### b
-For the Computer:
-```
-cd TD4/src
-g++ main_td4b.cpp Mutex.cpp Chrono.cpp IncrMutex.cpp PosixThread.cpp Thread.cpp TimeSpec.cpp Mutex/*.cpp -lrt -lpthread -Wall -Wextra -o td4b
-./td4b <nLoop> <nThreads> <policy>
-```
-```
-In order to make it work for SCHED_RR and SCHED_FIFO we have to add sudo at the beginning of the compilation and execution
-```
-For the Raspberry, after execution of the toolchain:
-```
-$CXX -Wall -Wextra main_td4b.cpp Mutex.cpp Chrono.cpp IncrMutex.cpp PosixThread.cpp Thread.cpp TimeSpec.cpp Mutex/*.cpp -lrt -lpthread -o TD4b.out
-sshpass -p root scp *.out root@192.168.50.42:TD4/
-./TD4b.out <nLoop> <nThreads> <policy>
-```
-### c
-For the Computer:
+### TD4-c
+For PC:
 ```
 cd TD4/src
-g++ main_td4c.cpp Mutex.cpp Chrono.cpp Semaphore.cpp Consumer.cpp Productor.cpp PosixThread.cpp Thread.cpp TimeSpec.cpp Mutex/*.cpp -lrt -lpthread -Wall -Wextra -o td4c
-./td4c <nProd> <nCons> <nItems>
+make
+./main_td4c <nProd> <nCons> <nItems>
 ```
-For the Raspberry, after execution of the toolchain:
+
+For Raspberry PI:
 ```
-$CXX -Wall -Wextra main_td4c.cpp Mutex.cpp Chrono.cpp Semaphore.cpp Consumer.cpp Productor.cpp PosixThread.cpp Thread.cpp TimeSpec.cpp Mutex/*.cpp -lrt -lpthread -o TD4c.out
-sshpass -p root scp *.out root@192.168.50.42:TD4/
-./TD4c.out <nProd> <nCons> <nItems>
+$CXX -Wall -Wextra main_td4c.cpp Mutex.cpp Chrono.cpp Semaphore.cpp Consumer.cpp Producer.cpp PosixThread.cpp Thread.cpp SemaProducer.cpp SemaConsumer.cpp timespec.cpp Mutex.cpp -lrt -lpthread -o main_td4c.out
+sshpass -p root scp *.out root@192.168.50.47:TD4/
+./main_td4c.out <nProd> <nCons> <nItems>
 ```
-### d
-For the Computer:
+### TD4-d
+For PC:
 ```
 cd TD4/src
-g++ main_td4d.cpp Mutex.cpp Chrono.cpp Fifo.hpp FifoConsumer.cpp FifoProductor.cpp PosixThread.cpp Thread.cpp TimeSpec.cpp Mutex/*.cpp -lrt -lpthread -Wall -Wextra -o td4d
-./td4d <nProd> <nCons> <nItems>
+make
+./main_td4d <nProd> <nCons> <nItems>
 ```
-For the Raspberry, after execution of the toolchain:
+For Raspberry PI:
 ```
-$CXX -Wall -Wextra main_td4d.cpp Mutex.cpp Chrono.cpp Fifo.hpp FifoConsumer.cpp FifoProductor.cpp PosixThread.cpp Thread.cpp TimeSpec.cpp Mutex/*.cpp -lrt -lpthread -o TD4d.out
-sshpass -p root scp *.out root@192.168.50.42:TD4/
-./TD4d.out <nProd> <nCons> <nItems>
+$CXX -Wall -Wextra main_td4d.cpp Mutex.cpp Chrono.cpp Fifo.hpp FifoConsumer.cpp FifoProducer.cpp PosixThread.cpp Thread.cpp timespec.cpp Mutex.cpp -lrt -lpthread -o main_td4d.out
+sshpass -p root scp *.out root@192.168.50.47:TD4/
+./main_td4.out <nProd> <nCons> <nItems>
 ```
 ## TD5
-For the Computer:
+For PC:
 ```
 cd TD5
-g++ *.cpp Mutex/*.cpp -lrt -lpthread -Wall -Wextra -o td5
-./td5
+make
+./main_td5
 ```
 For the Raspberry, after execution of the toolchain:
 ```
-$CXX -Wall -Wextra *.cpp Mutex/*.cpp -lrt -lpthread -Wno-psabi -o TD5.out
-sshpass -p root scp *.out root@192.168.50.42:TD5/
-./TD5.out
+$CXX -Wall -Wextra *.cpp Mutex/*.cpp -lrt -lpthread -Wno-psabi -o main_td5.out
+sshpass -p root scp *.out root@192.168.50.47:TD5/
+./main_td5.out
 ```
 # ROB305
