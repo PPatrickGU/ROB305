@@ -12,7 +12,7 @@ OBJS_c = main_td4c.o timespec.o Chrono.o PosixThread.o Thread.o Mutex.o Semaphor
 OBJS_d = main_td4d.o timespec.o Chrono.o PosixThread.o Thread.o Mutex.o FifoProducer.o FifoConsumer.o
 
 main_td4a: $(OBJS_a)
-	g++ $(OBJS_a) -o main_td4a -lpthread -lrt 
+	g++ $(OBJS_a) -o main_td4a -lpthread -lrt
 
 main_td4b: $(OBJS_b)
 	g++ $(OBJS_b) -o main_td4b -lpthread -lrt 
@@ -22,6 +22,7 @@ main_td4c: $(OBJS_c)
 
 main_td4d: $(OBJS_d)
 	g++ $(OBJS_d) -o main_td4d -lpthread -lrt 
+	rm -rf *.o
 
 main_td4a.o: main_td4a.cpp 
 	g++ $(CFLAGS) main_td4a.cpp -o main_td4a.o

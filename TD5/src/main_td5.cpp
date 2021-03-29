@@ -23,7 +23,7 @@ int main()
 	sched_setaffinity(0, sizeof(cpu_set_t), &cpuset);
 
 	// Mutex with control on the inversion
-	Mutex mutex(true);	
+	Mutex mutex(false);	
 	Chrono chrono;
 
 	Calibrator calib(100,5);
@@ -38,19 +38,20 @@ int main()
 	int priorityC = 30;
 		
 	// Create threads with mutex 
-	CpuLoopMutex A(&cpulA, policy, priorityA, &mutex, 4000, 1000, 2000);
-	CpuLoopMutex B(&cpulB, policy, priorityB, &mutex, 1000, -1, -1);
-	CpuLoopMutex C(&cpulC, policy, priorityC, &mutex, 5000, 2000, 2000);
-
+	CpuLoopMutex A(&cpulA, policy, priorityA, &mutex, 40, 10, 10);
 	A.setScheduling(policy, priorityA);
+
+	CpuLoopMutex B(&cpulB, policy, priorityB, &mutex, 10, -1, -1);
 	B.setScheduling(policy, priorityB);
+
+	CpuLoopMutex C(&cpulC, policy, priorityC, &mutex, 50, 20, 20);
 	C.setScheduling(policy, priorityC);
 
 	//Start thread C and waiting for activating A and B
-	std::cout << "Start Thread C (priority 30)" << std::endl;
+	std::cout << "---Start of Thread C (priority 30)---" << std::endl;
 	C.start();
 	timespec_wait(timespec_from_ms(3000));
-	std::cout << "Start Thread A (priority 90) and B (priority 60)" << std::endl;
+	std::cout << "---Start of Thread A (priority 90) and B (priority 60)---\n" << std::endl;
 	A.start();
 	B.start();
 		
@@ -60,10 +61,10 @@ int main()
 	B.join();
 		
 	chrono.stop();
-	std::cout << "Time taken by A : " << A.execTime_ms() << " ms" << std::endl;
-	std::cout << "Time taken by B " << B.execTime_ms() << " ms" << std::endl;
-	std::cout << "Time taken by C " << C.execTime_ms() << " ms" << std::endl;
+	std::cout << "Ticks taken by A : " << A.execTime_ms() * CLOCKS_PER_SEC * 1e-3 << " ticks " << std::endl;
+	std::cout << "Ticks taken by B : " << B.execTime_ms() * CLOCKS_PER_SEC * 1e-3 << " ticks " << std::endl;
+	std::cout << "Ticks taken by C : " << C.execTime_ms() * CLOCKS_PER_SEC * 1e-3 << " ticks " << std::endl;
 	
-	std::cout << "Execytion Time of main : " << chrono.lap() << " ms"<< std::endl;
+	std::cout << "Execution Time of main : " << chrono.lap() << " ms"<< std::endl;
 	return 0;
 }

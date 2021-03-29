@@ -11,13 +11,14 @@ OBJS_c = main_td3c.o timespec.o Timer.o PeriodicTimer.o Looper.o Calibrator.o Cp
 
 
 main_td3a: $(OBJS_a)
-	g++ $(OBJS_a) -o main_td3a -lpthread -lrt 
+	g++ $(OBJS_a) -o main_td3a -lpthread -lrt
 
 main_td3b: $(OBJS_b)
 	g++ $(OBJS_b) -o main_td3b -lpthread -lrt 
 
 main_td3c: $(OBJS_c)
 	g++ $(OBJS_c) -o main_td3c -lpthread -lrt 
+	rm -rf *.o
 
 main_td3a.o: main_td3a.cpp 
 	g++ $(CFLAGS) main_td3a.cpp -o main_td3a.o

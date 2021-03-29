@@ -2,10 +2,11 @@ CFLAGS = -c -Wall -Werror -Wextra -std=c++11
 
 all: main_td5
 
-OBJS = main_td5.o timespec.o Chrono.o Calibrator.o PosixThread.o Thread.o Looper.o  CpuLoop.o Mutex.o CpuLoopMutex.o Timer.o PeriodicTimer.o
+OBJS =  main_td5.o timespec.o Chrono.o Calibrator.o PosixThread.o Thread.o Looper.o  CpuLoop.o Mutex.o CpuLoopMutex.o Timer.o PeriodicTimer.o
 
 main_td5: $(OBJS)
 	g++ $(OBJS) -o main_td5 -lpthread -lrt 
+	rm -rf *.o 
 
 main_td5.o: main_td5.cpp 
 	g++ $(CFLAGS) main_td5.cpp -o main_td5.o
@@ -43,7 +44,7 @@ Mutex.o: Mutex.cpp Mutex.h
 CpuLoopMutex.o: CpuLoopMutex.cpp CpuLoopMutex.h
 	g++ $(CFLAGS) CpuLoopMutex.cpp -o CpuLoopMutex.o		
 
-
+	
 
 clean:
 	rm -rf *.o main_td5

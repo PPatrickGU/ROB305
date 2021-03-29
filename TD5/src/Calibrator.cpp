@@ -32,22 +32,22 @@ Calibrator::Calibrator(double samplingPeriod_ms, unsigned int nSamples) : nSampl
 	a = (double) (nSamples * sum_xy - sum_x * sum_y) / (nSamples * sum_xx - sum_x * sum_x);
 	b = (double) sum_y / nSamples - a * sum_x / nSamples;
 
-	std::cout << "a = " << a << std::endl;
-	std::cout << "b = " << b << std::endl;
-	std::cout << "test : " << nLoops(samplingPeriod_ms) << std::endl;
+	// std::cout << "a = " << a << std::endl;
+	// std::cout << "b = " << b << std::endl;
+	// std::cout << "test : " << nLoops(samplingPeriod_ms) << std::endl;
 
-	std::cout << "---End of calibration---"  << std::endl; 
+	std::cout << "---End of calibration---\n"  << std::endl; 
 }
 
 void Calibrator::callback()
 {
 	double sample = looper.getSample();
-	std::cout << "The value of the sample is : " << sample << std::endl;
+	// std::cout << "The value of the sample is : " << sample << std::endl;
 	samples.push_back(sample);
 	if (samples.size() == nSamples) 
 	{
 		looper.stopLoop();
-		std::cout << "----STOPPING----" << std::endl;
+		// std::cout << "----STOPPING----" << std::endl;
 	}
 }
 

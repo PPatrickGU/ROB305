@@ -41,7 +41,7 @@ public:
 
 protected:
 	virtual void run() = 0; //	virtual void function that will be implemented by the derivate class
-	
+
 private:	
 	static void * call_run(void* v_thread);
 

@@ -16,6 +16,7 @@ main_td2b: $(OBJS_b)
 
 main_td2c: $(OBJS_c)
 	g++ $(OBJS_c) -o main_td2c -lpthread -lrt 
+	rm -rf *.o
 
 main_td2a.o: main_td2a.cpp 
 	g++ $(CFLAGS) main_td2a.cpp -o main_td2a.o

@@ -26,6 +26,7 @@ main_td1d: $(OBJS_d)
 
 main_td1e: $(OBJS_e)
 	g++ $(OBJS_e) -o main_td1e -lpthread -lrt 
+	rm -rf *.o
 
 main_td1a.o: main_td1a.cpp timespec.h
 	g++ $(CFLAGS) main_td1a.cpp -o main_td1a.o

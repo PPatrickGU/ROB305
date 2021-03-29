@@ -58,7 +58,7 @@ int main(int argc, char* argv[])
 		if(std::string(argv[3]) == "SCHED_RR") schedPolicy = SCHED_RR;               
     	else if(std::string(argv[3]) == "SCHED_FIFO") schedPolicy = SCHED_FIFO;      
     	else schedPolicy = SCHED_OTHER;
-    	bool protection = (argc == 5 && std::string(argv[4]) == "protected") ? true : false;
+    	bool protection = (argc == 5 && std::stoi(argv[4])) ? true : false;
     	
     	// Set mutex
     	pthread_mutex_t mutex;
@@ -74,9 +74,10 @@ int main(int argc, char* argv[])
 		pthread_attr_t attr;
 		pthread_attr_init(&attr);
 		pthread_attr_setinheritsched(&attr, PTHREAD_EXPLICIT_SCHED);
-		pthread_attr_setschedpolicy(&attr, schedPolicy);
 		sched_param schedParams;
+		pthread_attr_setschedpolicy(&attr, schedPolicy);
 		int priority = rand()%98 + 1; 
+		schedParams.sched_priority = (schedPolicy == SCHED_OTHER) ? 0 : priority;
 		pthread_attr_setschedparam(&attr, &schedParams);
 
 		// Create pthreads
@@ -101,7 +102,7 @@ int main(int argc, char* argv[])
 	}
 	else
 	{
-		std::cout << "Error: number of arguments. 4 expected." << std::endl;
+		std::cout << "Error: number of arguments. 4 expected: <nLoops> <nTasks> <policy> <ifProtected> ." << std::endl;
 	}
 
 	return 0;

@@ -30,6 +30,7 @@ Mutex::~Mutex()
     pthread_cond_destroy(&posixCondId);
 }
 
+
 void Mutex::lock()
 {
     pthread_mutex_lock(&posixId);
@@ -40,7 +41,6 @@ bool Mutex::lock(double timeout_ms)
     timespec timeout_ts = timespec_from_ms(timeout_ms);
     return ! (bool) pthread_mutex_timedlock(&posixId, &timeout_ts);
 }
-
 
 bool Mutex::trylock()
 {
