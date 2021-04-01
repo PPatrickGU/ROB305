@@ -14,8 +14,8 @@ make
 
 For Raspberry PI:
 ```
-$CXX -Wall -Wextra main_td1a.cpp timespec.cpp -lrt -o main_td1a.rpi2
-sshpass -p root scp *.rpi2 root@192.168.50.47:TD1/
+arm-linux-g++ -Wall -Wextra main_td1a.cpp timespec.cpp -lrt -o main_td1a.rpi2
+scp *.rpi2 root@192.168.50.47:TD1/
 ./main_td1a.rpi2
 ```
 
@@ -29,8 +29,8 @@ make
 
 For Raspberry PI:
 ```
-$CXX -Wall -Wextra main_td1b.cpp -lrt -lpthread -o main_td1b.rpi2
-sshpass -p root scp *.rpi2 root@192.168.50.47:TD1/
+arm-linux-g++ -Wall -Wextra main_td1b.cpp -lrt -lpthread -o main_td1b.rpi2
+scp *.rpi2 root@192.168.50.47:TD1/
 ./main_td1b.rpi2
 ```
 
@@ -44,8 +44,8 @@ make
 
 For Raspberry PI:
 ```
-$CXX -Wall -Wextra main_td1c.cpp timespec.cpp -lrt -lpthread -o main_td1c.rpi2
-sshpass -p root scp *.rpi2 root@192.168.50.47:TD1/
+arm-linux-g++ -Wall -Wextra main_td1c.cpp timespec.cpp -lrt -lpthread -o main_td1c.rpi2
+scp *.rpi2 root@192.168.50.47:TD1/
 ./main_td1c.rpi2 <nLoops>
 ```
 ### TD1-d
@@ -58,8 +58,8 @@ make
 
 For Raspberry PI:
 ```
-$CXX -Wall -Wextra main_td1d.cpp timespec.cpp -lrt -lpthread -o main_td1d.rpi2
-sshpass -p root scp *.rpi2 root@192.168.50.47:TD1/
+arm-linux-g++ -Wall -Wextra main_td1d.cpp timespec.cpp -lrt -lpthread -o main_td1d.rpi2
+scp *.rpi2 root@192.168.50.47:TD1/
 ./main_td1d.rpi2
 ```
 
@@ -73,8 +73,8 @@ make
 
 For Raspberry PI:
 ```
-$CXX -Wall -Wextra main_td1e.cpp timespec.cpp -lrt -lpthread -o main_td1e.rpi2
-sshpass -p root scp *.rpi2 root@192.168.50.47:TD1/
+arm-linux-g++ -Wall -Wextra main_td1e.cpp timespec.cpp -lrt -lpthread -o main_td1e.rpi2
+scp *.rpi2 root@192.168.50.47:TD1/
 ./main_td1e.rpi2
 ```
 
@@ -89,8 +89,8 @@ make
 ```
 For Raspberry PI:
 ```
-$CXX -Wall -Wextra main_td2a.cpp timespec.cpp -lrt -lpthread -o main_td2a.rpi2
-sshpass -p root scp *.rpi2 root@192.168.50.47:TD2/
+arm-linux-g++ -Wall -Wextra main_td2a.cpp timespec.cpp -lrt -lpthread -o main_td2a.rpi2
+scp *.rpi2 root@192.168.50.47:TD2/
 ./main_td2a.rpi2 <nLoops> <nTasks>
 ```
 
@@ -108,8 +108,8 @@ for example:
 ```
 For Raspberry PI:
 ```
-$CXX -Wall -Wextra main_td2b.cpp timespec.cpp -lrt -lpthread -o main_td2b.rpi2
-sshpass -p root scp *.rpi2 root@192.168.50.47:TD2/
+arm-linux-g++ -Wall -Wextra main_td2b.cpp timespec.cpp -lrt -lpthread -o main_td2b.rpi2
+scp *.rpi2 root@192.168.50.47:TD2/
 ./main_td2b.rpi2 <nLoops> <nTasks> <policy>
 
 example:
@@ -131,8 +131,8 @@ for example:
 ```
 For Raspberry PI:
 ```
-$CXX -Wall -Wextra main_td2c.cpp timespec.cpp -lrt -lpthread -o main_td2c.rpi2
-sshpass -p root scp *.rpi2 root@192.168.50.47:TD2/
+arm-linux-g++ -Wall -Wextra main_td2c.cpp timespec.cpp -lrt -lpthread -o main_td2c.rpi2
+scp *.rpi2 root@192.168.50.47:TD2/
 ./main_td2crpi2 <nLoop> <nTasks> <policy> <ifProtected>
 
 example:
@@ -152,8 +152,8 @@ make
 ```
 For Raspberry PI:
 ```
-$CXX -Wall -Wextra main_td3a.cpp timespec.cpp Chrono.cpp -lrt -lpthread -o main_td3a.rpi2
-sshpass -p root scp *.rpi2 root@192.168.50.47:TD3/
+arm-linux-g++ -Wall -Wextra main_td3a.cpp timespec.cpp Chrono.cpp -lrt -lpthread -o main_td3a.rpi2
+scp *.rpi2 root@192.168.50.47:TD3/
 ./main_td3a.rpi2
 ```
 
@@ -166,8 +166,8 @@ make
 ```
 For Raspberry PI:
 ```
-$CXX -Wall -Wextra main_td3b.cpp timespec.cpp Timer.cpp CountDown.cpp PeriodicTimer.cpp -lrt -lpthread -o main_td3b.rpi2
-sshpass -p root scp *.rpi2 root@192.168.50.47:TD3/
+arm-linux-g++ -Wall -Wextra main_td3b.cpp timespec.cpp Timer.cpp CountDown.cpp PeriodicTimer.cpp -lrt -lpthread -o main_td3b.rpi2
+scp *.rpi2 root@192.168.50.47:TD3/
 ./main_td3a..rpi2
 ```
 ### TD3-c
@@ -179,8 +179,8 @@ make
 ```
 For Raspberry PI:
 ```
-$CXX -Wall -Wextra main_td3c.cpp timespec.cpp Timer.cpp PeriodicTimer.cpp Looper.cpp CpuLoop.cpp Chrono.cpp Calibrator.cpp -lrt -lpthread -Wno-psabi -o TD3c.rpi2
-sshpass -p root scp *.rpi2 root@192.168.50.47:TD3/
+arm-linux-g++ -Wall -Wextra main_td3c.cpp timespec.cpp Timer.cpp PeriodicTimer.cpp Looper.cpp CpuLoop.cpp Chrono.cpp Calibrator.cpp -lrt -lpthread -Wno-psabi -o TD3c.rpi2
+scp *.rpi2 root@192.168.50.47:TD3/
 ./main_td3c.rpi2
 ```
 
@@ -196,8 +196,8 @@ make
 
 For Raspberry PI:
 ```
-$CXX -Wall -Wextra main_td4a.cpp Chrono.cpp Incr.cpp PosixThread.cpp Thread.cpp timespec.cpp -lrt -lpthread -o main_td4a.rpi2
-sshpass -p root scp *.rpi2 root@192.168.50.47:TD4/
+arm-linux-g++ -Wall -Wextra main_td4a.cpp Chrono.cpp IncrThread.cpp PosixThread.cpp Thread.cpp timespec.cpp -lrt -lpthread -o main_td4a.rpi2
+scp *.rpi2 root@192.168.50.47:TD4/
 ./main_td4a.rpi2.rpi2 <nLoop> <nThreads> <policy>
 ```
 ### TD4-b
@@ -210,8 +210,8 @@ make
 
 For Raspberry PI:
 ```
-$CXX -Wall -Wextra main_td4b.cpp Mutex.cpp Chrono.cpp IncrMutex.cpp PosixThread.cpp Thread.cpp timespec.cpp Mutex/*.cpp -lrt -lpthread -o main_td4b.rpi2
-sshpass -p root scp *.rpi2 root@192.168.50.47:TD4/
+arm-linux-g++ -Wall -Wextra main_td4b.cpp timespec.cpp Chrono.cpp Mutex.cpp PosixThread.cpp Thread.cpp IncrThread.cpp IncrMutexThread.cpp  -lrt -lpthread -o main_td4b.rpi2
+scp *.rpi2 root@192.168.50.47:TD4/
 ./main_td4b.rpi2 <nLoop> <nThreads> <policy>
 ```
 ### TD4-c
@@ -224,8 +224,8 @@ make
 
 For Raspberry PI:
 ```
-$CXX -Wall -Wextra main_td4c.cpp Mutex.cpp Chrono.cpp Semaphore.cpp Consumer.cpp Producer.cpp PosixThread.cpp Thread.cpp SemaProducer.cpp SemaConsumer.cpp timespec.cpp Mutex.cpp -lrt -lpthread -o main_td4c.rpi2
-sshpass -p root scp *.rpi2 root@192.168.50.47:TD4/
+arm-linux-g++ -Wall -Wextra main_td4c.cpp Mutex.cpp Chrono.cpp Semaphore.cpp PosixThread.cpp Thread.cpp SemaProducer.cpp SemaConsumer.cpp timespec.cpp -lrt -lpthread -o main_td4c.rpi2
+scp *.rpi2 root@192.168.50.47:TD4/
 ./main_td4c.rpi2 <nProd> <nCons> <nItems>
 ```
 ### TD4-d
@@ -237,8 +237,8 @@ make
 ```
 For Raspberry PI:
 ```
-$CXX -Wall -Wextra main_td4d.cpp Mutex.cpp Chrono.cpp Fifo.hpp FifoConsumer.cpp FifoProducer.cpp PosixThread.cpp Thread.cpp timespec.cpp Mutex.cpp -lrt -lpthread -o main_td4d.rpi2
-sshpass -p root scp *.rpi2 root@192.168.50.47:TD4/
+arm-linux-g++ -Wall -Wextra main_td4d.cpp Mutex.cpp Chrono.cpp Fifo.hpp FifoConsumer.cpp FifoProducer.cpp PosixThread.cpp Thread.cpp timespec.cpp -lrt -lpthread -o main_td4d.rpi2
+scp *.rpi2 root@192.168.50.47:TD4/
 ./main_td4.rpi2 <nProd> <nCons> <nItems>
 ```
 ## TD5
@@ -248,10 +248,10 @@ cd TD5
 make
 ./main_td5
 ```
-For the Raspberry, after execution of the toolchain:
+For Raspberry PI:
 ```
-$CXX -Wall -Wextra *.cpp Mutex/*.cpp -lrt -lpthread -Wno-psabi -o main_td5.rpi2
-sshpass -p root scp *.rpi2 root@192.168.50.47:TD5/
+arm-linux-g++ -Wall -Wextra *.cpp -lrt -lpthread -Wno-psabi -o main_td5.rpi2
+scp *.rpi2 root@192.168.50.47:TD5/
 ./main_td5.rpi2
 ```
 
